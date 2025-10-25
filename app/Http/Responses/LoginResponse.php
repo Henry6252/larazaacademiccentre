@@ -22,7 +22,7 @@ class LoginResponse implements LoginResponseContract
 
         $redirect = match ($role) {
             'admin' => route('admin.dashboard'),
-            'teacher' => route('teacher.dashboard'),
+            'tutor' => route('tutor.dashboard'),
             'student' => route('student.dashboard'),
             default => '/dashboard',
         };

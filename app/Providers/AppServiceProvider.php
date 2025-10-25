@@ -3,8 +3,12 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Pagination\Paginator;
 use Laravel\Fortify\Contracts\LoginResponse;
 use App\Http\Responses\LoginResponse as CustomLoginResponse;
+use App\Models\User; 
+use App\Observers\UserObserver;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -21,6 +25,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        //Paginator::useBootstrapFive();
+        User::observe(UserObserver::class);
     }
 }

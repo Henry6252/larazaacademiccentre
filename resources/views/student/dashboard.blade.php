@@ -1,13 +1,14 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="text-2xl font-bold text-gray-800">Student Dashboard</h2>
-    </x-slot>
+@extends('layouts.app')
 
-    <div class="py-10 bg-gray-50">
-        <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
-            <x-dashboard.card title="My Courses" description="Check your enrolled classes" link="#" color="bg-black" />
-            <x-dashboard.card title="Exam Schedule" description="Upcoming tests and assessments" link="#" color="bg-emerald-600" />
-            <x-dashboard.card title="Academic Results" description="Your past grades & performance" link="#" color="bg-orange-600" />
-        </div>
+@section('header')
+    <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        Student Dashboard
+    </h2>
+@endsection
+
+@section('content')
+    <div class="p-6 bg-white shadow rounded">
+        <h3 class="text-lg font-bold mb-4">Welcome, Student 🎓</h3>
+        <p>Here you can view your enrollments, check grades, and manage your learning progress.</p>
     </div>
-</x-app-layout>
+@endsection

@@ -11,6 +11,31 @@ use Illuminate\View\View;
 
 class ProfileController extends Controller
 {
+     public function index()
+    {
+        $user = Auth::user();
+
+        $student = Student::where('user_id', $user->id)->first();
+
+        // Fetch the student's enrolled courses
+        $courses = [];
+        if ($student) {
+            $courses = $student->enrollments()
+                ->with('course')
+                ->get()
+                ->pluck('course');
+        }
+
+        // ✅ Fetch the student's grades
+        $grades = [];
+        if ($student) {
+            $grades = Grade::with('course')
+                ->where('student_id', $student->id)
+                ->get();
+        }
+
+        return view('student.profile.index', compact('user', 'student', 'courses', 'grades'));
+    }
     /**
      * Display the user's profile form.
      */

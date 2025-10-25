@@ -10,13 +10,14 @@
         </div>
         <!-- Role -->
         <div class="mt-4">
-            <x-input-label for="role" :value="__('Register As')" />
-            <select id="role" name="role" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
-                <option value="student">Student</option>
-                <option value="teacher">Teacher</option>
-                <option value="admin">Admin</option>
-            </select>
-        </div>
+    <label for="role" class="block text-sm font-medium text-gray-700">Register as</label>
+    <select id="role" name="role" required
+        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+        <option value="student">Student</option>
+        <option value="tutor">Tutor</option>
+    </select>
+</div>
+
 
 
         <!-- Email Address -->

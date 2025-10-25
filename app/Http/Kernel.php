@@ -22,6 +22,8 @@ class Kernel extends HttpKernel
      * Route middleware groups.
      */
     protected $middlewareGroups = [
+        'super-admin' => \App\Http\Middleware\SuperAdminMiddleware::class,
+
     'web' => [
         \App\Http\Middleware\EncryptCookies::class,
         \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
@@ -29,6 +31,7 @@ class Kernel extends HttpKernel
         \Illuminate\View\Middleware\ShareErrorsFromSession::class,
         \Illuminate\Foundation\Http\Middleware\VerifyCsrfToken::class, // or App version if present
         \Illuminate\Routing\Middleware\SubstituteBindings::class,
+        
     ],
 
     'api' => [
@@ -43,17 +46,16 @@ class Kernel extends HttpKernel
      * Route middleware.
      */
     protected $routeMiddleware = [
-        'auth' => \App\Http\Middleware\Authenticate::class,
-        'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
-        'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+    // Laravel defaults
+    'auth' => \App\Http\Middleware\Authenticate::class,
+    'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
 
-        // ✅ Spatie Role/Permission Middleware
-        'role' => \Spatie\Permission\Middleware\RoleMiddleware::class,
-'permission' => \Spatie\Permission\Middleware\PermissionMiddleware::class,
-'role_or_permission' => \Spatie\Permission\Middleware\RoleOrPermissionMiddleware::class,
+    // Spatie Laravel Permission
+    
 
 
         // ✅ Optional: Your own middleware
         'admin' => \App\Http\Middleware\AdminMiddleware::class,
     ];
+    
 }

@@ -47,4 +47,44 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+   // app/Models/User.php
+public function courses()
+{
+    return $this->belongsToMany(
+        Course::class,
+        'course_tutor',    // ✅ Correct pivot table
+        'tutor_id',        // Foreign key on pivot for this model
+        'course_id'        // Foreign key on pivot for the related model
+    )->withPivot('semester_id', 'academic_year_id')
+     ->withTimestamps();
+}
+
+public function tutorProfile()
+{
+    return $this->hasOne(Tutor::class);
+}
+
+// app/Models/User.php
+public function student()
+{
+    return $this->hasOne(Student::class);
+}
+// public function courseAssignments()
+// {
+//     return $this->belongsToMany(
+//         Course::class,
+//         'course_tutor',
+//         'tutor_id',   // this model’s foreign key on pivot
+//         'course_id'   // other side’s foreign key
+//     )->withPivot('semester_id', 'academic_year_id')
+//      ->withTimestamps();
+// }
+// public function assignedCourses()
+// {
+//     return $this->belongsToMany(Course::class, 'course_tutor', 'tutor_id', 'course_id')
+//                 ->withPivot('semester_id', 'academic_year_id')
+//                 ->withTimestamps();
+// }
+
+
 }
